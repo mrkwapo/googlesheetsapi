@@ -67,7 +67,7 @@ function getNewToken(oAuth2Client, callback) {
 }
 
 /**
- * Prints the names and majors of students in a sample spreadsheet:
+ * Prints the employee names, employee id, department id, and salary form a sample spreadsheet:
  * @see https://docs.google.com/spreadsheets/d/1o5OwwhTgJduNRGvpgOGic1mmW9P1vKLzt1KgfMXm7BA/edit
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
@@ -86,15 +86,34 @@ function listMajors(auth) {
         // const fs = require('fs');
 
         let webPage = `<!DOCTYPE html>
-        
-        <html>
-      <head>
-      	<title></title>
-      </head>
-      <body>
-      ${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}
-      </body>
-      </html>`
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet" />
+    <title> </title>
+  </head>
+  <body>
+  	<div id="wrapper">
+	    <header>
+	    	<div id="page-banner">
+	    	   <div class="headshot">
+	    	    <img src="images/employee.jpg">
+	    	   </div>
+
+          <h1 class="nameTitle">${row[0]} ${row[1]}</h1>
+          
+	    	</div>
+	    </header>
+	    <div id="employeeInfo">
+	    	<p>Employee ID: ${row[2]}</p>
+	    	<p>Department ID: ${row[3]}</p>
+	    	<p>Salary:$${row[4]}</p>
+	    </div>
+	    
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>`
 
         // write to a new file using first nameandlastname.txt
         fs.writeFile(row[0]+row[1] + '.html', webPage, (err) => {
